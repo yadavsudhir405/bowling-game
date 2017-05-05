@@ -12,8 +12,16 @@ import org.assertj.core.api.Assertions;
  */
 public class BowlingGameTest extends TestCase {
 
+    private static  Game game;
+
+    @Override
+    public void setUp() throws Exception {
+        game=new Game();
+
+    }
+
     public void testGutterGame() throws Exception{
-        Game game=new Game();
+
         for(int i=0;i<20;i++){
             game.roll(0);
 
@@ -21,11 +29,11 @@ public class BowlingGameTest extends TestCase {
         Assertions.assertThat(game.score()).isEqualTo(0);
     }
     public void testAllOnes(){
-        Game game=new Game();
-        for(int i=0;i<10;i++){
+        for(int i=0;i<20;i++){
             game.roll(1);
         }
-        Assertions.assertThat(game.score()).isEqualTo(10);
+        Assertions.assertThat(game.score()).isEqualTo(20);
     }
+
 
 }
