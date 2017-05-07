@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b62cee73-1c4e-436e-832b-528ca9bdee0b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/github/com/yadavsudhir405/bowlingGame/domain/Frame.java" afterPath="$PROJECT_DIR$/src/main/java/github/com/yadavsudhir405/bowlingGame/domain/Frame.java" />
     </list>
     <ignored path="bowling-game.iws" />
@@ -36,10 +35,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BowlingGameTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BowlingGameTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/github/com/uadavsudhir405/bowlinGame/BowlingGameTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1196">
+            <state relative-caret-position="299">
               <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -81,23 +80,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Frame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Frame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/github/com/yadavsudhir405/bowlingGame/domain/Frame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+            <state relative-caret-position="-1436">
+              <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1967#1968#0" expanded="true" />
-                <element signature="e#2030#2031#0" expanded="true" />
-                <element signature="e#2287#2288#0" expanded="true" />
-                <element signature="e#2330#2331#0" expanded="true" />
-                <element signature="e#2704#2705#0" expanded="true" />
-                <element signature="e#2754#2755#0" expanded="true" />
-                <element signature="e#2798#2799#0" expanded="true" />
-                <element signature="e#2847#2848#0" expanded="true" />
-                <element signature="e#3922#3923#0" expanded="true" />
-                <element signature="e#3965#3966#0" expanded="true" />
+                <element signature="e#2022#2023#0" expanded="true" />
+                <element signature="e#2085#2086#0" expanded="true" />
+                <element signature="e#2342#2343#0" expanded="true" />
+                <element signature="e#2385#2386#0" expanded="true" />
+                <element signature="e#2759#2760#0" expanded="true" />
+                <element signature="e#2809#2810#0" expanded="true" />
+                <element signature="e#2853#2854#0" expanded="true" />
+                <element signature="e#2902#2903#0" expanded="true" />
+                <element signature="e#3977#3978#0" expanded="true" />
+                <element signature="e#4020#4021#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -934,7 +933,7 @@
       <updated>1493968269812</updated>
       <workItem from="1493968271568" duration="12264000" />
       <workItem from="1494126250799" duration="6687000" />
-      <workItem from="1494135229291" duration="3588000" />
+      <workItem from="1494135229291" duration="4230000" />
     </task>
     <servers />
   </component>
@@ -954,24 +953,24 @@
     <history-entry file="BowlingGameTest - 2017.05.07 at 17h 26m 33s.xml">
       <configuration name="BowlingGameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BowlingGameTest_testAllStrikes - 2017.05.07 at 10h 10m 10s.xml">
-      <configuration name="BowlingGameTest.testAllStrikes" configurationId="JUnit" />
+    <history-entry file="BowlingGameTest - 2017.05.07 at 17h 33m 36s.xml">
+      <configuration name="BowlingGameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BowlingGameTest_testAllStrikes - 2017.05.07 at 10h 10m 29s.xml">
-      <configuration name="BowlingGameTest.testAllStrikes" configurationId="JUnit" />
+    <history-entry file="BowlingGameTest - 2017.05.07 at 17h 35m 29s.xml">
+      <configuration name="BowlingGameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BowlingGameTest_testAllStrikes - 2017.05.07 at 10h 12m 51s.xml">
-      <configuration name="BowlingGameTest.testAllStrikes" configurationId="JUnit" />
+    <history-entry file="BowlingGameTest - 2017.05.07 at 17h 36m 22s.xml">
+      <configuration name="BowlingGameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BowlingGameTest_testAllStrikes - 2017.05.07 at 10h 17m 42s.xml">
-      <configuration name="BowlingGameTest.testAllStrikes" configurationId="JUnit" />
+    <history-entry file="BowlingGameTest - 2017.05.07 at 17h 36m 34s.xml">
+      <configuration name="BowlingGameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BowlingGameTest_testAllStrikes - 2017.05.07 at 10h 23m 25s.xml">
-      <configuration name="BowlingGameTest.testAllStrikes" configurationId="JUnit" />
+    <history-entry file="BowlingGameTest - 2017.05.07 at 17h 37m 04s.xml">
+      <configuration name="BowlingGameTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22539000" />
+    <option name="totallyTimeSpent" value="23181000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="34" width="1602" height="867" extended-state="6" />
@@ -1083,16 +1082,16 @@
           <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1967#1968#0" expanded="true" />
-            <element signature="e#2030#2031#0" expanded="true" />
-            <element signature="e#2287#2288#0" expanded="true" />
-            <element signature="e#2330#2331#0" expanded="true" />
-            <element signature="e#2704#2705#0" expanded="true" />
-            <element signature="e#2754#2755#0" expanded="true" />
-            <element signature="e#2798#2799#0" expanded="true" />
-            <element signature="e#2847#2848#0" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3965#3966#0" expanded="true" />
+            <element signature="e#2022#2023#0" expanded="true" />
+            <element signature="e#2085#2086#0" expanded="true" />
+            <element signature="e#2342#2343#0" expanded="true" />
+            <element signature="e#2385#2386#0" expanded="true" />
+            <element signature="e#2759#2760#0" expanded="true" />
+            <element signature="e#2809#2810#0" expanded="true" />
+            <element signature="e#2853#2854#0" expanded="true" />
+            <element signature="e#2902#2903#0" expanded="true" />
+            <element signature="e#3977#3978#0" expanded="true" />
+            <element signature="e#4020#4021#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1148,16 +1147,16 @@
           <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1967#1968#0" expanded="true" />
-            <element signature="e#2030#2031#0" expanded="true" />
-            <element signature="e#2287#2288#0" expanded="true" />
-            <element signature="e#2330#2331#0" expanded="true" />
-            <element signature="e#2704#2705#0" expanded="true" />
-            <element signature="e#2754#2755#0" expanded="true" />
-            <element signature="e#2798#2799#0" expanded="true" />
-            <element signature="e#2847#2848#0" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3965#3966#0" expanded="true" />
+            <element signature="e#2022#2023#0" expanded="true" />
+            <element signature="e#2085#2086#0" expanded="true" />
+            <element signature="e#2342#2343#0" expanded="true" />
+            <element signature="e#2385#2386#0" expanded="true" />
+            <element signature="e#2759#2760#0" expanded="true" />
+            <element signature="e#2809#2810#0" expanded="true" />
+            <element signature="e#2853#2854#0" expanded="true" />
+            <element signature="e#2902#2903#0" expanded="true" />
+            <element signature="e#3977#3978#0" expanded="true" />
+            <element signature="e#4020#4021#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1238,32 +1237,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/github/com/yadavsudhir405/bowlingGame/domain/Frame.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/github/com/uadavsudhir405/bowlinGame/BowlingGameTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+        <state relative-caret-position="299">
+          <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1967#1968#0" expanded="true" />
-            <element signature="e#2030#2031#0" expanded="true" />
-            <element signature="e#2287#2288#0" expanded="true" />
-            <element signature="e#2330#2331#0" expanded="true" />
-            <element signature="e#2704#2705#0" expanded="true" />
-            <element signature="e#2754#2755#0" expanded="true" />
-            <element signature="e#2798#2799#0" expanded="true" />
-            <element signature="e#2847#2848#0" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3965#3966#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/github/com/uadavsudhir405/bowlinGame/BowlingGameTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/github/com/yadavsudhir405/bowlingGame/domain/Frame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1196">
-          <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
+        <state relative-caret-position="-1436">
+          <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2022#2023#0" expanded="true" />
+            <element signature="e#2085#2086#0" expanded="true" />
+            <element signature="e#2342#2343#0" expanded="true" />
+            <element signature="e#2385#2386#0" expanded="true" />
+            <element signature="e#2759#2760#0" expanded="true" />
+            <element signature="e#2809#2810#0" expanded="true" />
+            <element signature="e#2853#2854#0" expanded="true" />
+            <element signature="e#2902#2903#0" expanded="true" />
+            <element signature="e#3977#3978#0" expanded="true" />
+            <element signature="e#4020#4021#0" expanded="true" />
           </folding>
         </state>
       </provider>

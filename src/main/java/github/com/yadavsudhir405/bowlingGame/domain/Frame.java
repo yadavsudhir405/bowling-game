@@ -39,22 +39,27 @@ public class Frame {
     public void pinBalls(int n){
         if(thisIsStrikeHit(n)){
             setFrameEligibleForStrikeBonus();
-            rolls.poll().roll(n);
-            pinnedDownBalls=pinnedDownBalls+n;
-            pinnedUpBalls=pinnedUpBalls-n;
-            scores[chance++]=n;
+            updateScoresAndPinnedUpAndDownBalls(n);
         }else if(thisIsFrameHit(n)){
-            rolls.poll().roll(n);
             setFrameEligibleForFrameBonus();
-            pinnedDownBalls=pinnedDownBalls+n;
-            pinnedUpBalls=pinnedUpBalls-n;
-            scores[chance++]=n;
+            updateScoresAndPinnedUpAndDownBalls(n);
         }else {
-            rolls.poll().roll(n);
-            pinnedDownBalls=pinnedDownBalls+n;
-            pinnedUpBalls=pinnedUpBalls-n;
-            scores[chance++]=n;
+            justRollIt(n);
         }
+    }
+
+    private void justRollIt(int n) {
+        rolls.poll().roll(n);
+        pinnedDownBalls=pinnedDownBalls+n;
+        pinnedUpBalls=pinnedUpBalls-n;
+        scores[chance++]=n;
+    }
+
+    private void updateScoresAndPinnedUpAndDownBalls(int n){
+        rolls.poll().roll(n);
+        pinnedDownBalls=pinnedDownBalls+n;
+        pinnedUpBalls=pinnedUpBalls-n;
+        scores[chance++]=n;
     }
 
     private boolean thisIsFrameHit(int n) {
