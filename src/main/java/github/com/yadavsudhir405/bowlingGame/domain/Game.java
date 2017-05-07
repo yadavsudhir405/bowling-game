@@ -1,5 +1,8 @@
 package github.com.yadavsudhir405.bowlingGame.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author sudhir
  *         Date:5/5/17
@@ -8,26 +11,26 @@ package github.com.yadavsudhir405.bowlingGame.domain;
  */
 public class Game {
 
-    Frame[] frames=new Frame[10];
+    List<Frame> frames=new ArrayList<>();
     Frame extraBonusFrame=new Frame(3);
     int currentFrameIndex=0;
     {
         for(int i=0;i<10;i++){
-            frames[i]=new Frame(2);
+            frames.add(new Frame(2));
         }
     }
     public void roll(int pins){
         if(tenthFrameOver()){
-            handlesForExtraBallEligibilty(pins);
+            checkForExtraFrame(pins);
             return;
         }
-        Frame currentFrame=frames[currentFrameIndex];
+        Frame currentFrame=frames.get(currentFrameIndex);
         currentFrame.pinBalls(pins);
         if(isMakingTransitionToNextFrame()){
             if(currentFrameIndex==0){
                 currentFrame.initCumulativeScoreBoard();
             }else{
-                doScoreSettlement(frames[currentFrameIndex-1],frames[currentFrameIndex]);
+                doScoreSettlement(frames.get(currentFrameIndex-1),frames.get(currentFrameIndex));
             }
         }
         if(currentFrame.isFramesTotalChanceExhausted()){
@@ -36,14 +39,14 @@ public class Game {
 
     }
 
-    private void handlesForExtraBallEligibilty(int pins) {
-        Frame tenthFrame=frames[9];
+    private boolean checkForExtraFrame(int pins) {
+        Frame tenthFrame=frames.get(9);
         if(tenthFrame.eligibleForStrikeBonus()){
-
+            return true;
         }else if(tenthFrame.eligibleForFrameBonus()){
-
+            return true;
         }else {
-            throw new RuntimeException("Your are not eligible to play extra ball");
+            return false;
         }
     }
 
@@ -51,7 +54,7 @@ public class Game {
         return currentFrameIndex>9?true:false;
     }
     boolean isMakingTransitionToNextFrame(){
-        Frame currentFrame=frames[currentFrameIndex];
+        Frame currentFrame=frames.get(currentFrameIndex);
         return (currentFrame.eligibleForStrikeBonus()||currentFrame.isFramesTotalChanceExhausted())==true?true:false;
     }
     private void doScoreSettlement(Frame previousFrame,Frame currentFrame){
@@ -61,9 +64,9 @@ public class Game {
     }
     public int score(){
         if(currentFrameIndex>=10){
-            return frames[9].getCumulativeScoreSoFar();
+            return frames.get(9).getCumulativeScoreSoFar();
         }else {
-            return frames[currentFrameIndex].getCumulativeScoreSoFar();
+            return frames.get(currentFrameIndex).getCumulativeScoreSoFar();
         }
     }
 
