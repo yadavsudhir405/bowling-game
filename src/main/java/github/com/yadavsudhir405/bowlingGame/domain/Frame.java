@@ -32,16 +32,24 @@ public class Frame {
             pinnedDownBalls=pinnedDownBalls+n;
             pinnedUpBalls=pinnedUpBalls-n;
             scores[chance++]=n;
-        }else if(n==HALF_NUMBER_OF_BALLS){
+        }else if(n==HALF_NUMBER_OF_BALLS&&chance==0){
             rollses.poll().roll(n);
             setFrameEligibleForFrameBonus();
             pinnedDownBalls=pinnedDownBalls+n;
-            pinnedUpBalls=pinnedDownBalls-n;
+            pinnedUpBalls=pinnedUpBalls-n;
             scores[chance++]=n;
+        }else if(chance==1){
+            rollses.poll().roll(n);
+            pinnedDownBalls=pinnedDownBalls+n;
+            pinnedUpBalls=pinnedUpBalls-n;
+            scores[chance++]=n;
+            if(pinnedUpBalls==0){
+                setFrameEligibleForFrameBonus();
+            }
         }else {
             rollses.poll().roll(n);
             pinnedDownBalls=pinnedDownBalls+n;
-            pinnedUpBalls=pinnedDownBalls-n;
+            pinnedUpBalls=pinnedUpBalls-n;
             scores[chance++]=n;
         }
     }
@@ -62,7 +70,7 @@ public class Frame {
         return bonusType==BonusType.SPARE;
     }
     public void updateCumulativeScoreBoardWithBonusPoints(int bonusPoints){
-        this.cumulativeScoreSoFar+=bonusPoints;
+        this.cumulativeScoreSoFar=this.cumulativeScoreSoFar+bonusPoints;
     }
     public void updateCumulativeScoreBoardFromPreviousFrame(Frame previousFrame){
         int scoresIndividuallyInChances=scores[0]+scores[1];

@@ -37,7 +37,7 @@ public class BowlingGameTest  {
         Assertions.assertThat(game.score()).isEqualTo(20);
     }
     @Test
-    public void testWithOneSpareAndAllones(){
+    public void testWithOneSpareAndAllOnes(){
         game.roll(4);
         game.roll(6);
         for(int i=0;i<18;i++){
@@ -50,7 +50,7 @@ public class BowlingGameTest  {
         for(int i=0;i<10;i++){
             game.roll(10);
         }
-        Assertions.assertThat(game.score()).isEqualTo(200);
+        Assertions.assertThat(game.score()).isEqualTo(190);
     }
 
 
