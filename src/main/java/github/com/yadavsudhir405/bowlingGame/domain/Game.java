@@ -12,7 +12,8 @@ import java.util.List;
 public class Game {
 
     List<Frame> frames=new ArrayList<>();
-    Frame extraBonusFrame=new Frame(3);
+    boolean hasExtraFrameAlreadyAdded;
+    Frame extraFrame;
     int currentFrameIndex=0;
     {
         for(int i=0;i<10;i++){
@@ -21,8 +22,14 @@ public class Game {
     }
     public void roll(int pins){
         if(tenthFrameOver()){
-            checkForExtraFrame(pins);
-            return;
+            if(!hasExtraFrameAlreadyAdded && checkForExtraFrame()){
+                frames.add(extraFrame=new Frame(3));
+                hasExtraFrameAlreadyAdded=true;
+            }
+            if(extraFrame==null || !extraFrame.eligibleToRollBalls()){
+                throw new RuntimeException("Not Allowed to roll balls now");
+            }
+
         }
         Frame currentFrame=frames.get(currentFrameIndex);
         currentFrame.pinBalls(pins);
@@ -39,7 +46,7 @@ public class Game {
 
     }
 
-    private boolean checkForExtraFrame(int pins) {
+    private boolean checkForExtraFrame() {
         Frame tenthFrame=frames.get(9);
         if(tenthFrame.eligibleForStrikeBonus()){
             return true;

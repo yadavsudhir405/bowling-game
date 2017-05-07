@@ -129,4 +129,7 @@ public class Frame {
     int getCumulativeScoreSoFar(){
         return cumulativeScoreSoFar;
     }
+    boolean eligibleToRollBalls(){
+        return isFramesTotalChanceExhausted()==false?true:false;
+    }
 }
