@@ -14,51 +14,70 @@ import java.util.Queue;
 public class Frame {
     private static final int TOTAL_PINNED_BALLS_AT_STARTING_OF_FRAME=10;
     private static final int HALF_NUMBER_OF_BALLS=5;
-    private Queue<Rolls> rollses;
+
+    private Queue<Rolls> rolls;
     private BonusType bonusType=BonusType.NONE;
-    private int[] scores=new int[2];
+    private int[] scores;
     int maxAllowedChances;
     int chance=0;
     private int pinnedUpBalls=TOTAL_PINNED_BALLS_AT_STARTING_OF_FRAME;
     private int pinnedDownBalls;
     private int cumulativeScoreSoFar=0;
+
     public Frame(int maxAllowedChances){
         this.maxAllowedChances=maxAllowedChances;
-        this.rollses=new ArrayDeque<>(maxAllowedChances);
+        this.rolls =new ArrayDeque<>(maxAllowedChances);
+        this.scores=new int[maxAllowedChances];
+
         int i=0;
         while(i<maxAllowedChances){
-            rollses.add(new Rolls());
+            rolls.add(new Rolls());
             i++;
         }
     }
 
     public void pinBalls(int n){
-        if(n==TOTAL_PINNED_BALLS_AT_STARTING_OF_FRAME&&chance==0){
+        if(thisIsStrikeHit(n)){
             setFrameEligibleForStrikeBonus();
-            rollses.poll().roll(n);
+            rolls.poll().roll(n);
             pinnedDownBalls=pinnedDownBalls+n;
             pinnedUpBalls=pinnedUpBalls-n;
             scores[chance++]=n;
-        }else if(n==HALF_NUMBER_OF_BALLS&&chance==0){
-            rollses.poll().roll(n);
+        }else if(thisIsFrameHit(n)){
+            rolls.poll().roll(n);
             setFrameEligibleForFrameBonus();
             pinnedDownBalls=pinnedDownBalls+n;
             pinnedUpBalls=pinnedUpBalls-n;
             scores[chance++]=n;
-        }else if(chance==1){
-            rollses.poll().roll(n);
-            pinnedDownBalls=pinnedDownBalls+n;
-            pinnedUpBalls=pinnedUpBalls-n;
-            scores[chance++]=n;
-            if(pinnedUpBalls==0){
-                setFrameEligibleForFrameBonus();
-            }
         }else {
-            rollses.poll().roll(n);
+            rolls.poll().roll(n);
             pinnedDownBalls=pinnedDownBalls+n;
             pinnedUpBalls=pinnedUpBalls-n;
             scores[chance++]=n;
         }
+    }
+
+    private boolean thisIsFrameHit(int n) {
+        if(pinnedUpBalls==n && lastChanceOfThisFrame()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    private boolean lastChanceOfThisFrame(){
+        return (chance==maxAllowedChances-1)?true:false;
+    }
+
+    private boolean thisIsStrikeHit(int n){
+        if(n==TOTAL_PINNED_BALLS_AT_STARTING_OF_FRAME && firstChanceOfThisFrame()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private boolean firstChanceOfThisFrame(){
+        return chance==0?true:false;
     }
     private void setFrameEligibleForStrikeBonus(){
         bonusType=BonusType.STRIKE;
@@ -67,7 +86,7 @@ public class Frame {
         bonusType=BonusType.SPARE;
     }
     public boolean isFramesTotalChanceExhausted(){
-        return (this.bonusType==BonusType.STRIKE||rollses.isEmpty())==true?true:false;
+        return (this.bonusType==BonusType.STRIKE|| rolls.isEmpty())==true?true:false;
     }
 
     public boolean eligibleForStrikeBonus(){
@@ -87,14 +106,23 @@ public class Frame {
         if(frame.eligibleForFrameBonus()){
             return scores[0];
         }else if(frame.eligibleForStrikeBonus()){
-            return scores[0]+scores[1];
+            int totalScores=0;
+            for(int i=0;i<scores.length;i++){
+                totalScores=totalScores+scores[i];
+            }
+            return totalScores;
         }else {
             return 0;
         }
     }
     public void initCumulativeScoreBoard(){
-        this.cumulativeScoreSoFar=scores[0]+scores[1];
+        int totalScores=0;
+        for(int i=0;i<scores.length;i++){
+            totalScores=totalScores+scores[i];
+        }
+        this.cumulativeScoreSoFar=totalScores;
     }
+
     int getCumulativeScoreSoFar(){
         return cumulativeScoreSoFar;
     }
