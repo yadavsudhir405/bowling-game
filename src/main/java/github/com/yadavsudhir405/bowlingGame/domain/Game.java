@@ -55,7 +55,6 @@ public class Game {
             return frames[9].getCumulativeScoreSoFar();
         }else {
             return frames[currentFrameIndex].getCumulativeScoreSoFar();
-
         }
     }
 
