@@ -29,18 +29,7 @@ public class Game {
             currentFrameIndex++;
         }
     }
-
-    private void checkBonusAdditionToPreviousFrame(int n) {
-        if(currentFrameIndex==0){
-            System.out.println("First Frame is not Eligible for this at starting of game");
-        }else {
-            Frame frame=frames[currentFrameIndex-1];
-            if(frame.eligibleForFrameBonus()){
-
-            }
-        }
-
-    }
+    
     boolean isMakingTransitionToNextFrame(){
         Frame currentFrame=frames[currentFrameIndex];
         return (currentFrame.eligibleForStrikeBonus()||currentFrame.isFramesTotalChanceExhausted())==true?true:false;
