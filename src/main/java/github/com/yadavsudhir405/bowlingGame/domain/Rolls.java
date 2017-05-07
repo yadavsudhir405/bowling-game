@@ -10,7 +10,7 @@ public class Rolls {
     int score;
     public void roll(int n){
         score=n;
-        
+
     }
     public int getScore(){
         return score;
