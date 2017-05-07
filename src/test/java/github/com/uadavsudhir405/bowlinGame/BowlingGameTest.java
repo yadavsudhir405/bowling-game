@@ -106,6 +106,14 @@ public class BowlingGameTest  {
         game.roll(1);
     }
 
+    @Test
+    public void testAllStrikesWithExtraFrameAsStrike(){
+        for(int i=0;i<10;i++){
+            game.roll(10);
+        }
+        game.roll(10);
+        Assertions.assertThat(game.score()).isEqualTo(210);
+    }
 
 
 }

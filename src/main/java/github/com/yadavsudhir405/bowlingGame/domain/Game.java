@@ -70,11 +70,12 @@ public class Game {
         currentFrame.updateCumulativeScoreBoardFromPreviousFrame(previousFrame);
     }
     public int score(){
-        if(currentFrameIndex>=10){
+       /* if(currentFrameIndex>=10){
             return frames.get(9).getCumulativeScoreSoFar();
         }else {
             return frames.get(currentFrameIndex).getCumulativeScoreSoFar();
-        }
+        }*/
+       return frames.get(currentFrameIndex-1).getCumulativeScoreSoFar();
     }
 
 }
