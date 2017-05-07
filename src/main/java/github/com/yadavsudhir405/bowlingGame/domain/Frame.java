@@ -14,17 +14,24 @@ import java.util.Queue;
 public class Frame {
     private static final int TOTAL_PINNED_BALLS_AT_STARTING_OF_FRAME=10;
     private static final int HALF_NUMBER_OF_BALLS=5;
-    private Queue<Rolls> rollses=new ArrayDeque<>(2);
+    private Queue<Rolls> rollses;
     private BonusType bonusType=BonusType.NONE;
     private int[] scores=new int[2];
+    int maxAllowedChances;
     int chance=0;
     private int pinnedUpBalls=TOTAL_PINNED_BALLS_AT_STARTING_OF_FRAME;
     private int pinnedDownBalls;
     private int cumulativeScoreSoFar=0;
-    {
-        rollses.add(new Rolls());
-        rollses.add(new Rolls());
+    public Frame(int maxAllowedChances){
+        this.maxAllowedChances=maxAllowedChances;
+        this.rollses=new ArrayDeque<>(maxAllowedChances);
+        int i=0;
+        while(i<maxAllowedChances){
+            rollses.add(new Rolls());
+            i++;
+        }
     }
+
     public void pinBalls(int n){
         if(n==TOTAL_PINNED_BALLS_AT_STARTING_OF_FRAME&&chance==0){
             setFrameEligibleForStrikeBonus();

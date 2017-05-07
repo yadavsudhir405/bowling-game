@@ -9,13 +9,18 @@ package github.com.yadavsudhir405.bowlingGame.domain;
 public class Game {
 
     Frame[] frames=new Frame[10];
+    Frame extraBonusFrame=new Frame(3);
     int currentFrameIndex=0;
     {
         for(int i=0;i<10;i++){
-            frames[i]=new Frame();
+            frames[i]=new Frame(2);
         }
     }
     public void roll(int pins){
+        if(tenthFrameOver()){
+            handlesForExtraBallEligibilty(pins);
+            return;
+        }
         Frame currentFrame=frames[currentFrameIndex];
         currentFrame.pinBalls(pins);
         if(isMakingTransitionToNextFrame()){
@@ -28,8 +33,23 @@ public class Game {
         if(currentFrame.isFramesTotalChanceExhausted()){
             currentFrameIndex++;
         }
+
     }
-    
+
+    private void handlesForExtraBallEligibilty(int pins) {
+        Frame tenthFrame=frames[9];
+        if(tenthFrame.eligibleForStrikeBonus()){
+
+        }else if(tenthFrame.eligibleForFrameBonus()){
+
+        }else {
+            throw new RuntimeException("Your are not eligible to play extra ball");
+        }
+    }
+
+    private boolean tenthFrameOver(){
+        return currentFrameIndex>9?true:false;
+    }
     boolean isMakingTransitionToNextFrame(){
         Frame currentFrame=frames[currentFrameIndex];
         return (currentFrame.eligibleForStrikeBonus()||currentFrame.isFramesTotalChanceExhausted())==true?true:false;

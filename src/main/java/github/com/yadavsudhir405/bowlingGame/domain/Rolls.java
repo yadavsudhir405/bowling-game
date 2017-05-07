@@ -10,7 +10,7 @@ public class Rolls {
     int score;
     public void roll(int n){
         score=n;
-        //System.out.println("Rolled "+n+" balls down");
+        
     }
     public int getScore(){
         return score;
