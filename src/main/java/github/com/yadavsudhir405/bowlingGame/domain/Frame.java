@@ -13,8 +13,6 @@ import java.util.Queue;
  */
 public class Frame {
     private static final int TOTAL_PINNED_BALLS_AT_STARTING_OF_FRAME=10;
-    private static final int HALF_NUMBER_OF_BALLS=5;
-
     private Queue<Rolls> rolls;
     private BonusType bonusType=BonusType.NONE;
     private int[] scores;
@@ -24,7 +22,7 @@ public class Frame {
     private int pinnedDownBalls;
     private int cumulativeScoreSoFar=0;
 
-    public Frame(int maxAllowedChances){
+    Frame(int maxAllowedChances){
         this.maxAllowedChances=maxAllowedChances;
         this.rolls =new ArrayDeque<>(maxAllowedChances);
         this.scores=new int[maxAllowedChances];
@@ -36,7 +34,7 @@ public class Frame {
         }
     }
 
-    public void pinBalls(int n){
+    void pinBalls(int n){
         if(thisIsStrikeHit(n)){
             setFrameEligibleForStrikeBonus();
             updateScoresAndPinnedUpAndDownBalls(n);
@@ -90,40 +88,40 @@ public class Frame {
     private  void setFrameEligibleForFrameBonus(){
         bonusType=BonusType.SPARE;
     }
-    public boolean isFramesTotalChanceExhausted(){
+    boolean isFramesTotalChanceExhausted(){
         return (this.bonusType==BonusType.STRIKE|| rolls.isEmpty())==true?true:false;
     }
 
-    public boolean eligibleForStrikeBonus(){
+    boolean eligibleForStrikeBonus(){
         return bonusType==BonusType.STRIKE;
     }
-    public boolean eligibleForFrameBonus(){
+    boolean eligibleForFrameBonus(){
         return bonusType==BonusType.SPARE;
     }
-    public void updateCumulativeScoreBoardWithBonusPoints(int bonusPoints){
-        this.cumulativeScoreSoFar=this.cumulativeScoreSoFar+bonusPoints;
-    }
-    public void updateCumulativeScoreBoardFromPreviousFrame(Frame previousFrame){
+    void updateCumulativeScoreBoardFromPreviousFrame(Frame previousFrame){
         int scoresIndividuallyInChances=scores[0]+scores[1];
         this.cumulativeScoreSoFar=previousFrame.cumulativeScoreSoFar+scoresIndividuallyInChances;
     }
-    public int getBonusPointsForPreviousFotFrame(Frame frame){
+    void updateCumulativeScoreBoardWithBonusPoints(int bonusPoints){
+        this.cumulativeScoreSoFar=this.cumulativeScoreSoFar+bonusPoints;
+    }
+    int getBonusPointsForPreviousFotFrame(Frame frame){
         if(frame.eligibleForFrameBonus()){
             return scores[0];
         }else if(frame.eligibleForStrikeBonus()){
             int totalScores=0;
-            for(int i=0;i<scores.length;i++){
-                totalScores=totalScores+scores[i];
+            for(int score:scores){
+                totalScores=totalScores+score;
             }
             return totalScores;
         }else {
             return 0;
         }
     }
-    public void initCumulativeScoreBoard(){
+    void initCumulativeScoreBoard(){
         int totalScores=0;
-        for(int i=0;i<scores.length;i++){
-            totalScores=totalScores+scores[i];
+        for(int score:scores){
+            totalScores=totalScores+score;
         }
         this.cumulativeScoreSoFar=totalScores;
     }
