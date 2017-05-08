@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62cee73-1c4e-436e-832b-528ca9bdee0b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/github/com/yadavsudhir405/bowlingGame/domain/Game.java" afterPath="$PROJECT_DIR$/src/main/java/github/com/yadavsudhir405/bowlingGame/domain/Game.java" />
-    </list>
+    <list default="true" id="b62cee73-1c4e-436e-832b-528ca9bdee0b" name="Default" comment="" />
     <ignored path="bowling-game.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -944,7 +942,7 @@
       <updated>1493968269812</updated>
       <workItem from="1493968271568" duration="12264000" />
       <workItem from="1494126250799" duration="6687000" />
-      <workItem from="1494135229291" duration="25046000" />
+      <workItem from="1494135229291" duration="25148000" />
     </task>
     <servers />
   </component>
@@ -981,7 +979,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43997000" />
+    <option name="totallyTimeSpent" value="44099000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="34" width="1922" height="1047" extended-state="6" />
