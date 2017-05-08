@@ -47,17 +47,25 @@ public class Frame {
     }
 
     private void justRollIt(int n) {
-        rolls.poll().roll(n);
-        pinnedDownBalls=pinnedDownBalls+n;
-        pinnedUpBalls=pinnedUpBalls-n;
-        scores[chance++]=n;
+        Rolls roll;
+        if((roll=rolls.poll())!=null){
+            roll.roll(n);
+            pinnedDownBalls=pinnedDownBalls+n;
+            pinnedUpBalls=pinnedUpBalls-n;
+            scores[chance++]=n;
+        }
+
     }
 
     private void updateScoresAndPinnedUpAndDownBalls(int n){
-        rolls.poll().roll(n);
-        pinnedDownBalls=pinnedDownBalls+n;
-        pinnedUpBalls=pinnedUpBalls-n;
-        scores[chance++]=n;
+        Rolls roll;
+        if((roll=rolls.poll())!=null){
+            roll.roll(n);
+            pinnedDownBalls=pinnedDownBalls+n;
+            pinnedUpBalls=pinnedUpBalls-n;
+            scores[chance++]=n;
+        }
+
     }
 
     private boolean thisIsFrameHit(int n) {
@@ -89,13 +97,13 @@ public class Frame {
         bonusType=BonusType.SPARE;
     }
     boolean isFramesTotalChanceExhausted(){
-        return (this.bonusType==BonusType.STRIKE|| rolls.isEmpty())==true?true:false;
+        return (pinnedUpBalls==0 ||rolls.isEmpty())?true:false;
     }
 
     boolean eligibleForStrikeBonus(){
         return bonusType==BonusType.STRIKE;
     }
-    boolean eligibleForFrameBonus(){
+    boolean eligibleForSpareBonus(){
         return bonusType==BonusType.SPARE;
     }
     void updateCumulativeScoreBoardFromPreviousFrame(Frame previousFrame){
@@ -106,7 +114,7 @@ public class Frame {
         this.cumulativeScoreSoFar=this.cumulativeScoreSoFar+bonusPoints;
     }
     int getBonusPointsForPreviousFotFrame(Frame frame){
-        if(frame.eligibleForFrameBonus()){
+        if(frame.eligibleForSpareBonus()){
             return scores[0];
         }else if(frame.eligibleForStrikeBonus()){
             int totalScores=0;
@@ -131,5 +139,13 @@ public class Frame {
     }
     boolean eligibleToRollBalls(){
         return isFramesTotalChanceExhausted()==false?true:false;
+    }
+
+    public boolean allBallsAreNotDown() {
+        return pinnedUpBalls!=0?true:false;
+    }
+
+    public void addExtraScoreToCumulativeScore(int pinnedBalls) {
+        cumulativeScoreSoFar=cumulativeScoreSoFar+pinnedBalls;
     }
 }

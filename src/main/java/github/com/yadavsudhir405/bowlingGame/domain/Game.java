@@ -12,55 +12,75 @@ import java.util.List;
 public class Game {
 
     List<Frame> frames=new ArrayList<>();
-    boolean hasExtraFrameAlreadyAdded;
-    Frame extraFrame;
+    private boolean tenthFrameIsEligibleForExtrallRoll;
     int currentFrameIndex=0;
     {
-        for(int i=0;i<10;i++){
+        for(int i=0;i<9;i++){
             frames.add(new Frame(2));
         }
+        frames.add(new Frame(2));
     }
     public void roll(int pins){
-        if(tenthFrameOver()){
-            if(!hasExtraFrameAlreadyAdded && checkForExtraFrame()){
-                frames.add(extraFrame=new Frame(3));
-                hasExtraFrameAlreadyAdded=true;
-            }
-            if(extraFrame==null || !extraFrame.eligibleToRollBalls()){
-                throw new RuntimeException("Not Allowed to roll balls now");
-            }
+        if(tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&frames.get(9).isFramesTotalChanceExhausted()&&frames
+                .get(9).allBallsAreNotDown()){
+            currentFrameIndex=9;
+        }else if(tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&!frames.get(9).allBallsAreNotDown()){
+            throw new RuntimeException("Not Allowed to roll balls now");
+        }else if(tenthFrameOver()&&!tenthFrameIsEligibleForExtrallRoll){
+            throw new RuntimeException("Not Allowed to roll balls now");
+        }else{
+            Frame currentFrame=frames.get(currentFrameIndex);
 
-        }
-        Frame currentFrame=frames.get(currentFrameIndex);
-        currentFrame.pinBalls(pins);
-        if(isMakingTransitionToNextFrame()){
-            if(currentFrameIndex==0){
-                currentFrame.initCumulativeScoreBoard();
-            }else{
-                doScoreSettlement(frames.get(currentFrameIndex-1),frames.get(currentFrameIndex));
+            if(currentFrameIsTenthFrame()&&currentFrame.allBallsAreNotDown()&&currentFrame
+                    .isFramesTotalChanceExhausted()&&tenthFrameIsEligibleForExtrallRoll){
+                rollExtraBall(currentFrame,pins);
+                tenthFrameIsEligibleForExtrallRoll=false;
+                return;
             }
-        }
-        if(currentFrame.isFramesTotalChanceExhausted()){
-            currentFrameIndex++;
+            currentFrame.pinBalls(pins);
+            if(isMakingTransitionToNextFrame()){
+                if(currentFrameIndex==0){
+                    currentFrame.initCumulativeScoreBoard();
+                }else{
+                    doScoreSettlement(frames.get(currentFrameIndex-1),frames.get(currentFrameIndex));
+                }
+                if(currentFrameisNinthFrame()&& eligibleForExtraBallRoll()){
+                    tenthFrameIsEligibleForExtrallRoll=true;
+                }
+                if(currentFrameIndex==9&&tenthFrameIsEligibleForExtrallRoll&&currentFrame.allBallsAreNotDown()){
+
+                }else{
+                    currentFrameIndex++;
+                }
+
+            }
         }
 
     }
 
-    private boolean checkForExtraFrame() {
-        Frame tenthFrame=frames.get(9);
-        if(tenthFrame.eligibleForStrikeBonus()){
-            return true;
-        }else if(tenthFrame.eligibleForFrameBonus()){
-            return true;
-        }else {
-            return false;
-        }
+    private void rollExtraBall(Frame tenthFrame,int pinnedBalls) {
+        int cumulativeScoredBoard=tenthFrame.getCumulativeScoreSoFar();
+        tenthFrame.addExtraScoreToCumulativeScore(pinnedBalls);
     }
+
+    private boolean currentFrameIsTenthFrame() {
+        return currentFrameIndex==9?true:false;
+    }
+
+    private boolean eligibleForExtraBallRoll() {
+        Frame frame=frames.get(currentFrameIndex);
+        return (frame.eligibleForStrikeBonus()||frame.eligibleForSpareBonus())?true:false;
+    }
+
+    private boolean currentFrameisNinthFrame() {
+        return currentFrameIndex==8?true:false;
+    }
+
 
     private boolean tenthFrameOver(){
         return currentFrameIndex>9?true:false;
     }
-    boolean isMakingTransitionToNextFrame(){
+    private boolean isMakingTransitionToNextFrame(){
         Frame currentFrame=frames.get(currentFrameIndex);
         return (currentFrame.eligibleForStrikeBonus()||currentFrame.isFramesTotalChanceExhausted())==true?true:false;
     }
@@ -70,12 +90,13 @@ public class Game {
         currentFrame.updateCumulativeScoreBoardFromPreviousFrame(previousFrame);
     }
     public int score(){
-       /* if(currentFrameIndex>=10){
-            return frames.get(9).getCumulativeScoreSoFar();
-        }else {
-            return frames.get(currentFrameIndex).getCumulativeScoreSoFar();
-        }*/
-       return frames.get(currentFrameIndex-1).getCumulativeScoreSoFar();
+        int score;
+        if(currentFrameIndex>9){
+            score=frames.get(9).getCumulativeScoreSoFar();
+        }else{
+            score=frames.get(currentFrameIndex).getCumulativeScoreSoFar();
+        }
+       return score;
     }
 
 }

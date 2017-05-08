@@ -108,12 +108,86 @@ public class BowlingGameTest  {
 
     @Test
     public void testAllStrikesWithExtraFrameAsStrike(){
+        thrown.expect(RuntimeException.class);
+        thrown.expectMessage("Not Allowed to roll balls now");
         for(int i=0;i<10;i++){
             game.roll(10);
         }
         game.roll(10);
         Assertions.assertThat(game.score()).isEqualTo(210);
     }
+    @Test
+    public void testAllStrikesWithExtraFrameAsStrikeWithExtraRollShouldThrowRuntimeException(){
+        thrown.expect(RuntimeException.class);
+        thrown.expectMessage("Not Allowed to roll balls now");
+        for(int i=0;i<10;i++){
+            game.roll(10);
+        }
+        game.roll(10);
+        game.roll(1);
+    }
+    @Test
+    public void testAllWithAllSpareAsStrikeWithExtraRollShouldThrowRuntimeException(){
+        thrown.expect(RuntimeException.class);
+        thrown.expectMessage("Not Allowed to roll balls now");
+        for(int i=0;i<20;i++){
+            if(i%2==0){
+                game.roll(6);
+            }else {
+                game.roll(4);
+            }
+        }
+        game.roll(10);
+    }
+    @Test
+    public void testAllWithAllSpareWithExtraRollShouldReturnCorrectScore(){
+        thrown.expect(RuntimeException.class);
+        thrown.expectMessage("Not Allowed to roll balls now");
+        for(int i=0;i<20;i++){
+            if(i%2==0){
+                game.roll(6);
+            }else {
+                game.roll(4);
+            }
+        }
+        game.roll(1);
+        game.roll(3);
+        game.roll(5);
 
+    }
+
+    @Test
+    public void testWithRandomInputs(){
+        game.roll(1);
+        game.roll(4);
+
+        game.roll(4);
+        game.roll(5);
+
+        game.roll(6);
+        game.roll(4);
+
+        game.roll(5);
+        game.roll(5);
+
+        game.roll(10);
+
+        game.roll(0);
+        game.roll(1);
+
+        game.roll(7);
+        game.roll(3);
+
+        game.roll(6);
+        game.roll(4);
+
+        game.roll(10);
+
+        game.roll(2);
+        game.roll(2);
+        game.roll(6);
+
+        Assertions.assertThat(game.score()).isEqualTo(121);
+    }
 
 }
