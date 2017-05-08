@@ -96,6 +96,7 @@ public class Game {
         }else{
             score=frames.get(currentFrameIndex).getCumulativeScoreSoFar();
         }
+        
        return score;
     }
 
