@@ -78,7 +78,7 @@ public class Game {
 
 
     private boolean tenthFrameOver(){
-        return currentFrameIndex>9?true:false;
+        return currentFrameIndex>9? true:false;
     }
     private boolean isMakingTransitionToNextFrame(){
         Frame currentFrame=frames.get(currentFrameIndex);
