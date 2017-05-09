@@ -64,21 +64,21 @@ public class Game {
     }
 
     private boolean currentFrameIsTenthFrame() {
-        return currentFrameIndex==9?true:false;
+        return currentFrameIndex==9;
     }
 
     private boolean eligibleForExtraBallRoll() {
         Frame frame=frames.get(currentFrameIndex);
-        return (frame.eligibleForStrikeBonus()||frame.eligibleForSpareBonus())?true:false;
+        return (frame.eligibleForStrikeBonus()||frame.eligibleForSpareBonus());
     }
 
     private boolean currentFrameisNinthFrame() {
-        return currentFrameIndex==8?true:false;
+        return currentFrameIndex==8;
     }
 
 
     private boolean tenthFrameOver(){
-        return currentFrameIndex>9? true:false;
+        return currentFrameIndex>9;
     }
     private boolean isMakingTransitionToNextFrame(){
         Frame currentFrame=frames.get(currentFrameIndex);
