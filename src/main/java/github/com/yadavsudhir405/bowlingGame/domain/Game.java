@@ -31,12 +31,13 @@ public class Game {
 
     private void playGame(int pins) {
         Frame currentFrame=frames.get(currentFrameIndex);
-        if(currentFrameIsTenthFrame()&&currentFrame.allBallsAreNotDown()&&currentFrame
-                .isFramesTotalChanceExhausted()&&tenthFrameIsEligibleForExtrallRoll){
+
+        if(tenthFrameEligibleToPlayExtraRollAndAllBallsAreNotDown(currentFrame)){
             rollExtraBall(currentFrame,pins);
             tenthFrameIsEligibleForExtrallRoll=false;
             return;
         }
+
         currentFrame.pinBalls(pins);
         if(isMakingTransitionToNextFrame()){
             if(currentFrameIndex==0){
@@ -47,15 +48,16 @@ public class Game {
             if(ninthFrameAndItsStrikeOrSpare(currentFrame)){
                 setTenthFrameEligibleToPlayExtraBall();
             }
-            if(tenthFrameAllBallsAreNotDownButEligibleToPlayExtraBall(currentFrame)){
-
-            }else{
+            if(!tenthFrameAllBallsAreNotDownButEligibleToPlayExtraBall(currentFrame)){
                 currentFrameIndex++;
             }
 
         }
     }
-
+    private boolean tenthFrameEligibleToPlayExtraRollAndAllBallsAreNotDown(Frame currentFrame){
+        return currentFrameIsTenthFrame()&&currentFrame.allBallsAreNotDown()&&currentFrame
+                .isFramesTotalChanceExhausted()&&tenthFrameIsEligibleForExtrallRoll;
+    }
     private void setTenthFrameEligibleToPlayExtraBall() {
         tenthFrameIsEligibleForExtrallRoll=true;
     }
