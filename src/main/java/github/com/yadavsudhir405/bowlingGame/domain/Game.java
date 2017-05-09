@@ -13,20 +13,15 @@ public class Game {
 
     List<Frame> frames=new ArrayList<>();
     private boolean tenthFrameIsEligibleForExtrallRoll;
-    int currentFrameIndex=0;
-    {
+    private int currentFrameIndex=0;
+    public Game(){
         for(int i=0;i<9;i++){
             frames.add(new Frame(2));
         }
         frames.add(new Frame(2));
     }
     public void roll(int pins){
-        if(tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&frames.get(9).isFramesTotalChanceExhausted()&&frames
-                .get(9).allBallsAreNotDown()){
-            currentFrameIndex=9;
-        }else if(tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&!frames.get(9).allBallsAreNotDown()){
-            throw new RuntimeException("Not Allowed to roll balls now");
-        }else if(tenthFrameOver()&&!tenthFrameIsEligibleForExtrallRoll){
+        if(gameOver()){
             throw new RuntimeException("Not Allowed to roll balls now");
         }else{
             Frame currentFrame=frames.get(currentFrameIndex);
@@ -57,9 +52,19 @@ public class Game {
         }
 
     }
-
+    private boolean gameOver(){
+        boolean isOver;
+        if(tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&frames.get(9).isFramesTotalChanceExhausted()&&frames
+                .get(9).allBallsAreNotDown()||(tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&!frames.get(9)
+                .allBallsAreNotDown())||(tenthFrameOver()&&!tenthFrameIsEligibleForExtrallRoll)){
+            currentFrameIndex=9;
+            isOver=true;
+        }else{
+            isOver=false;
+        }
+        return isOver;
+    }
     private void rollExtraBall(Frame tenthFrame,int pinnedBalls) {
-        int cumulativeScoredBoard=tenthFrame.getCumulativeScoreSoFar();
         tenthFrame.addExtraScoreToCumulativeScore(pinnedBalls);
     }
 
@@ -82,7 +87,7 @@ public class Game {
     }
     private boolean isMakingTransitionToNextFrame(){
         Frame currentFrame=frames.get(currentFrameIndex);
-        return (currentFrame.eligibleForStrikeBonus()||currentFrame.isFramesTotalChanceExhausted())==true?true:false;
+        return currentFrame.eligibleForStrikeBonus()||currentFrame.isFramesTotalChanceExhausted();
     }
     private void doScoreSettlement(Frame previousFrame,Frame currentFrame){
         int bonusPoints=currentFrame.getBonusPointsForPreviousFotFrame(previousFrame);
