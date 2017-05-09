@@ -44,16 +44,27 @@ public class Game {
             }else{
                 doScoreSettlement(frames.get(currentFrameIndex-1),frames.get(currentFrameIndex));
             }
-            if(currentFrameisNinthFrame()&& eligibleForExtraBallRoll()){
-                tenthFrameIsEligibleForExtrallRoll=true;
+            if(ninthFrameAndItsStrikeOrSpare(currentFrame)){
+                setTenthFrameEligibleToPlayExtraBall();
             }
-            if(currentFrameIndex==9&&tenthFrameIsEligibleForExtrallRoll&&currentFrame.allBallsAreNotDown()){
+            if(tenthFrameAllBallsAreNotDownButEligibleToPlayExtraBall(currentFrame)){
 
             }else{
                 currentFrameIndex++;
             }
 
         }
+    }
+
+    private void setTenthFrameEligibleToPlayExtraBall() {
+        tenthFrameIsEligibleForExtrallRoll=true;
+    }
+
+    private boolean ninthFrameAndItsStrikeOrSpare(Frame currentFrame){
+        return currentFrameisNinthFrame()&& eligibleForExtraBallRoll();
+    }
+    private boolean tenthFrameAllBallsAreNotDownButEligibleToPlayExtraBall(Frame currentFrame){
+        return currentFrameIndex==9&&tenthFrameIsEligibleForExtrallRoll&&currentFrame.allBallsAreNotDown();
     }
 
     private boolean gameOver(){
