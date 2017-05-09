@@ -16,3 +16,22 @@ for that frame is the value of the next two balls rolled.
 In the tenth frame a player who rolls a spare or strike is allowed to roll the extra
 balls to complete the frame.  However no more than three balls can be rolled in
 tenth frame.
+#Sample Input:
+* First Frame:
+   1,4->5
+* Second Frame:
+  4,5->14
+* Third Frame:
+  6,4->29
+* Fourth Frame:
+  5,5->49
+* Sixth Frame:
+  10->60
+* Seventh Frame:
+  0,1->61
+* Eighth Frame:
+  7,3->77
+* Ninth Frame:
+  6,4->97
+* Tenth Frame:
+  2,2,6->121
