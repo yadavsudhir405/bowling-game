@@ -24,45 +24,53 @@ public class Game {
         if(gameOver()){
             throw new RuntimeException("Not Allowed to roll balls now");
         }else{
-            Frame currentFrame=frames.get(currentFrameIndex);
-
-            if(currentFrameIsTenthFrame()&&currentFrame.allBallsAreNotDown()&&currentFrame
-                    .isFramesTotalChanceExhausted()&&tenthFrameIsEligibleForExtrallRoll){
-                rollExtraBall(currentFrame,pins);
-                tenthFrameIsEligibleForExtrallRoll=false;
-                return;
-            }
-            currentFrame.pinBalls(pins);
-            if(isMakingTransitionToNextFrame()){
-                if(currentFrameIndex==0){
-                    currentFrame.initCumulativeScoreBoard();
-                }else{
-                    doScoreSettlement(frames.get(currentFrameIndex-1),frames.get(currentFrameIndex));
-                }
-                if(currentFrameisNinthFrame()&& eligibleForExtraBallRoll()){
-                    tenthFrameIsEligibleForExtrallRoll=true;
-                }
-                if(currentFrameIndex==9&&tenthFrameIsEligibleForExtrallRoll&&currentFrame.allBallsAreNotDown()){
-
-                }else{
-                    currentFrameIndex++;
-                }
-
-            }
+            playGame(pins);
         }
 
     }
+
+    private void playGame(int pins) {
+        Frame currentFrame=frames.get(currentFrameIndex);
+        if(currentFrameIsTenthFrame()&&currentFrame.allBallsAreNotDown()&&currentFrame
+                .isFramesTotalChanceExhausted()&&tenthFrameIsEligibleForExtrallRoll){
+            rollExtraBall(currentFrame,pins);
+            tenthFrameIsEligibleForExtrallRoll=false;
+            return;
+        }
+        currentFrame.pinBalls(pins);
+        if(isMakingTransitionToNextFrame()){
+            if(currentFrameIndex==0){
+                currentFrame.initCumulativeScoreBoard();
+            }else{
+                doScoreSettlement(frames.get(currentFrameIndex-1),frames.get(currentFrameIndex));
+            }
+            if(currentFrameisNinthFrame()&& eligibleForExtraBallRoll()){
+                tenthFrameIsEligibleForExtrallRoll=true;
+            }
+            if(currentFrameIndex==9&&tenthFrameIsEligibleForExtrallRoll&&currentFrame.allBallsAreNotDown()){
+
+            }else{
+                currentFrameIndex++;
+            }
+
+        }
+    }
+
     private boolean gameOver(){
         boolean isOver;
-        if(tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&frames.get(9).isFramesTotalChanceExhausted()&&frames
-                .get(9).allBallsAreNotDown()||(tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&!frames.get(9)
-                .allBallsAreNotDown())||(tenthFrameOver()&&!tenthFrameIsEligibleForExtrallRoll)){
-            currentFrameIndex=9;
+        if(tenthFrameFinishedEligibleToPlayExtraBallButAllBallsAreAlreadyDown()
+                ||tenthFrameFinishedAndNotEligibleToPlayExtraBall()){
             isOver=true;
         }else{
             isOver=false;
         }
         return isOver;
+    }
+    private boolean tenthFrameFinishedEligibleToPlayExtraBallButAllBallsAreAlreadyDown(){
+        return tenthFrameOver()&&tenthFrameIsEligibleForExtrallRoll&&frames.get(9).isFramesTotalChanceExhausted();
+    }
+    private boolean tenthFrameFinishedAndNotEligibleToPlayExtraBall(){
+        return tenthFrameOver()&&!tenthFrameIsEligibleForExtrallRoll;
     }
     private void rollExtraBall(Frame tenthFrame,int pinnedBalls) {
         tenthFrame.addExtraScoreToCumulativeScore(pinnedBalls);
